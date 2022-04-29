@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -std=c++11
+CFLAGS = -Wall
 LDFLAGS =
 OBJFILES = testing.o
 TARGET = a.out

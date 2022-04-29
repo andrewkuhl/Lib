@@ -96,5 +96,41 @@ int main()
 
 
 
+     cout << "TRANSITION METHODS:\n";
+    if(dfa.transitions->add('a', 'b', 'c'))
+    {
+        cout << "  add() \tpassed" << endl;
+    }
+    else
+    {
+        cout << "  add() \tfailed" << endl;
+    }
+    if(dfa.transitions->find('a', 'b'))
+    {
+        cout << "  find() \tpassed" << endl;
+    }
+    else
+    {
+        cout << "  find() \tfailed" << endl;
+    }
+    if(dfa.transitions->size() == 1)
+    {
+        cout << "  size() \tpassed"  << endl;
+    }
+    else
+    {
+        cout << "  size() \tfailed" << endl;
+    }
+    if(dfa.transitions->del('a', 'b'))
+    {
+        cout << "  del() \tpassed"  << endl;
+    }
+    else
+    {
+        cout << "  del() \tfailed" << endl;
+    }
+
+
+
     return 0;
 }
