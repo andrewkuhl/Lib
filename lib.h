@@ -23,7 +23,6 @@ template <class T> class DFA               //DFA CLASS
 
     DFA()       
     {
-        printf("dfa");
         states = new States<T>();        //INIT STATES
         alphabet = new Alphabet<T>();       //INIT ALPHABET
         transitions = new Transitions<T>();      //INIT TRANSITIONS

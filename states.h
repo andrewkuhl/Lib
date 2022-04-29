@@ -14,7 +14,6 @@ template <class T> class States             //STATES CLASS
     public:
     States()    //STATES CONSTRUCTOR
     {
-        printf(".");
         ssize = DEFAULT;      //STATES SIZE DEFAULT (0)  
     }
     bool add(T _state)      //ADD STATE TO SMAP

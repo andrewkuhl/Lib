@@ -10,7 +10,6 @@ template <class T> class Transitions        //TRANSITIONS CLASS
     public:
     Transitions()
     {
-        printf(".\n");
         tsize = 0;
     }
 };

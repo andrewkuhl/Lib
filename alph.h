@@ -13,7 +13,6 @@ template <class T> class Alphabet             //ALPHABET CLASS
     public:
     Alphabet()    //ALPHABET CONSTRUCTOR
     {
-        printf(".");
         asize = DEFAULT;      //ALPHABET SIZE DEFAULT (0)  
     }
     bool add(T _char)      //ADD CHARACTER TO AMAP
