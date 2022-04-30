@@ -9,134 +9,135 @@
 
 using namespace std;
 
-void testing()
+bool testing(bool mode)
 {
     bool check = true;
-    cout << "TESTING..\n";
+    if(mode)cout << "TESTING..\n";
     DFA<char> dfa;
-    cout << "  dfa obj \tpassed\n";
+    if(mode)cout << "  dfa obj \tpassed\n";
 
     /*      STATE TESTS       */
 
-    cout << "STATE METHODS:\n";
+    if(mode)cout << "STATE METHODS:\n";
     if(dfa.states->add('a')) /*      ADD       */
     {
         if(!dfa.states->add('a'))
-            cout << "  add() \tpassed" << endl;
+            if(mode)cout << "  add() \tpassed" << endl;
     }
     else
     {
         check = false;
-        cout << "  add() \tfailed" << endl;
+        if(mode)cout << "  add() \tfailed" << endl;
     }
 
     if(dfa.states->find('a')) /*       FIND      */
     {
-        cout << "  find() \tpassed" << endl;
+        if(mode)cout << "  find() \tpassed" << endl;
     }
     else
     {
         check = false;
-        cout << "  find() \tfailed" << endl;
+        if(mode)cout << "  find() \tfailed" << endl;
     }
     if(dfa.states->list()[0] == 'a') /*       LIST      */
     {
-        cout << "  list() \tpassed"  << endl;
+        if(mode)cout << "  list() \tpassed"  << endl;
     }
     else
     {
         check = false;
-        cout << "  list() \tfailed" << endl;
+        if(mode)cout << "  list() \tfailed" << endl;
     }
     if(dfa.states->size() == 1) /*     SIZE        */
     {
-        cout << "  size() \tpassed"  << endl;
+        if(mode)cout << "  size() \tpassed"  << endl;
     }
     else
     {
         check = false;
-        cout << "  size() \tfailed" << endl;
+        if(mode)cout << "  size() \tfailed" << endl;
     }
     if(dfa.states->del('a')) /*      DEL       */
     {
         if(!dfa.states->del('a'))
-        cout << "  del() \tpassed"  << endl;
+        if(mode)cout << "  del() \tpassed"  << endl;
     }
     else
     {
         check = false;
-        cout << "  del() \tfailed" << endl;
+        if(mode)cout << "  del() \tfailed" << endl;
     }
-    if(dfa.states->clear()) /*      DEL       */
+    if(dfa.states->clear()) /*      CLEAR       */
     {
-        cout << "  clear() \tpassed"  << endl;
+        if(mode)cout << "  clear() \tpassed"  << endl;
     }
     else
     {
         check = false;
-        cout << "  clear() \tfailed" << endl;
+        if(mode)cout << "  clear() \tfailed" << endl;
     }
 
     /*       END STATE TESTS      */
 
 
     /*      ALPHABET TESTS       */
-    cout << "ALPHABET METHODS:\n"; 
+    if(mode)cout << "ALPHABET METHODS:\n"; 
     if(dfa.alphabet->add('a')) /*      ADD       */
     {
         if(!dfa.alphabet->add('a'))
-            cout << "  add() \tpassed" << endl;
+            if(mode)cout << "  add() \tpassed" << endl;
     }
     else
     {
         check = false;
-        cout << "  add() \tfailed" << endl;
+        if(mode)cout << "  add() \tfailed" << endl;
     }
     if(dfa.alphabet->find('a')) /*      FIND       */
     {
-        cout << "  find() \tpassed" << endl;
+        if(mode)cout << "  find() \tpassed" << endl;
     }
     else
     {
         check = false;
-        cout << "  find() \tfailed" << endl;
+        if(mode)cout << "  find() \tfailed" << endl;
     }
     if(dfa.alphabet->list()[0] == 'a') /*      LIST       */
     {
-        cout << "  list() \tpassed"  << endl;
+        if(mode)cout << "  list() \tpassed"  << endl;
     }
     else
     {
         check = false;
-        cout << "  list() \tfailed" << endl;
+        if(mode)cout << "  list() \tfailed" << endl;
     }
     if(dfa.alphabet->size() == 1) /*      SIZE       */
     {
-        cout << "  size() \tpassed"  << endl;
+        if(mode)cout << "  size() \tpassed"  << endl;
     }
     else
     {
         check = false;
-        cout << "  size() \tfailed" << endl;
+        if(mode)cout << "  size() \tfailed" << endl;
     }
     if(dfa.alphabet->del('a')) /*      DEL       */
     {
         if(!dfa.alphabet->del('a'))
-            cout << "  del() \tpassed"  << endl;
+            if(mode)
+                cout << "  del() \tpassed"  << endl;
     }
     else
     {
         check = false;
-        cout << "  del() \tfailed" << endl;
+        if(mode)cout << "  del() \tfailed" << endl;
     }
-    if(dfa.alphabet->clear()) /*      DEL       */
+    if(dfa.alphabet->clear()) /*      CLEAR       */
     {
-        cout << "  clear() \tpassed"  << endl;
+        if(mode)cout << "  clear() \tpassed"  << endl;
     }
     else
     {
         check = false;
-        cout << "  clear() \tfailed" << endl;
+        if(mode)cout << "  clear() \tfailed" << endl;
     }
 
     /*      END ALPHABET TESTS       */
@@ -145,61 +146,112 @@ void testing()
 
     /*      TRANSITION TESTS       */
 
-     cout << "TRANSITION METHODS:\n";
+    if(mode)cout << "TRANSITION METHODS:\n";
     if(dfa.transitions->add('a', 'b', 'c')) /*      ADD       */
     {
         if(!dfa.transitions->add('a', 'b', 'c'))
-            cout << "  add() \tpassed" << endl;
+        {
+            if(mode)cout << "  add() \tpassed" << endl;
+        }
+        else
+        {
+            check = false;
+            if(mode)cout << "  add() \tfailed" << endl;
+        }
     }
     else
     {
         check = false;
-        cout << "  add() \tfailed" << endl;
+        if(mode)cout << "  add() \tfailed" << endl;
     }
     if(dfa.transitions->find('a', 'b')) /*      FIND       */
     {
         if(!dfa.transitions->find('m', 'b'))
-        cout << "  find() \tpassed" << endl;
+        if(mode)cout << "  find() \tpassed" << endl;
     }
     else
     {
         check = false;
-        cout << "  find() \tfailed" << endl;
+        if(mode)cout << "  find() \tfailed" << endl;
     }
     if(dfa.transitions->size() == 1) /*      SIZE       */
     {
-        cout << "  size() \tpassed"  << endl;
+        if(mode)cout << "  size() \tpassed"  << endl;
     }
     else
     {
         check = false;
-        cout << "  size() \tfailed" << endl;
+        if(mode)cout << "  size() \tfailed" << endl;
     }
     if(dfa.transitions->del('a', 'b')) /*       DEL      */
     {
         if(!dfa.transitions->del('a', 'b'))
-        cout << "  del() \tpassed"  << endl;
+        if(mode)cout << "  del() \tpassed"  << endl;
     }
     else
     {
         check = false;
-        cout << "  del() \tfailed" << endl;
+        if(mode)cout << "  del() \tfailed" << endl;
     }
-    if(dfa.transitions->clear()) /*      DEL       */
+    if(dfa.transitions->clear()) /*      CLEAR       */
     {
-        cout << "  clear() \tpassed"  << endl;
+        if(mode)cout << "  clear() \tpassed"  << endl;
     }
     else
     {
         check = false;
-        cout << "  clear() \tfailed" << endl;
+        if(mode)cout << "  clear() \tfailed" << endl;
     }
 
     /*         END TRANSITION TESTS      */
 
+    /*      INPUT TESTS       */
+    if(mode)cout << "INPUT METHODS:\n"; 
+    dfa.input->add('a');/*      ADD       */
+    if(*dfa.input->get() == 'a')
+    {
+        if(mode)cout << "  add() \tpassed" << endl;
+    }
+    else
+    {
+        check = false;
+        if(mode)cout << "  add() \tfailed" << endl;
+    }
+    dfa.input->add('a');
+    if(dfa.input->peek()[0] == 'a') /*      LIST       */
+    {
+        if(mode)cout << "  peek() \tpassed"  << endl;
+    }
+    else
+    {
+        check = false;
+        if(mode)cout << "  peek() \tfailed" << endl;
+    }
+    if(dfa.input->size() == 1) /*      SIZE       */
+    {
+        if(mode)cout << "  size() \tpassed"  << endl;
+    }
+    else
+    {
+        check = false;
+        if(mode)cout << "  size() \tfailed" << endl;
+    }
+    if(dfa.input->clear()) /*      CLEAR       */
+    {
+        if(mode)cout << "  clear() \tpassed"  << endl;
+    }
+    else
+    {
+        check = false;
+        if(mode)cout << "  clear() \tfailed" << endl;
+    }
+
+    /*      END ALPHABET TESTS       */
+
+
     /*          DFA TESTS           */
 
-    cout << "DFA METHODS:\n";
+    if(mode)cout << "DFA METHODS:\n";
     char sarr[] = {'A', 'B', 'C'};
 
     char aarr[] = {'a', 'b', 'c'};
@@ -208,75 +260,100 @@ void testing()
                      'B' , 'b', 'C',
                      'C' , 'c', 'A'};
 
+    char iarr[] = {'0', '1', '2'};
     dfa.sset(3, sarr);
-    cout << "  sset() \tpassed" << endl;
+    if(mode)cout << "  sset() \tpassed" << endl;
     dfa.aset(3, aarr);
-    cout << "  aset() \tpassed" << endl;
+    if(mode)cout << "  aset() \tpassed" << endl;
     dfa.tset(3, tarr);
-    cout << "  tset() \tpassed" << endl;
+    if(mode)cout << "  tset() \tpassed" << endl;
+    dfa.iset(3, iarr);
+    if(mode)cout << "  iset() \tpassed" << endl;
     if(dfa.run())
-        cout << "  run() \tpassed" << endl;
+    {
+        if(mode)cout << "  run() \tpassed" << endl;
+    }
     else
     {
         check = false;
-        cout << "  run() \tfailed" << endl;
+        if(mode)cout << "  run() \tfailed" << endl;
     }
 
-    cout << "TESTING PRINT" << endl;
+    if(mode)cout << "TESTING PRINT" << endl;
 
-    char buffer[96];
+    char buffer[107];
     int stdout_save;
     stdout_save = dup(STDOUT_FILENO);
-    freopen("NUL", "a", stdout); //redirect stdout to null pointer
+    freopen("NULL", "a", stdout); //redirect stdout to null pointer
     setvbuf(stdout, buffer, _IOFBF, 1024); //set buffer to stdout
 
     dfa.states->print();
     dfa.alphabet->print();
     dfa.transitions->print();
+    dfa.input->print();
 
-    freopen("NUL", "a", stdout); //redirect stdout to null again
+    freopen("NULL", "a", stdout); //redirect stdout to null again
     dup2(stdout_save, STDOUT_FILENO); //restore the previous state of stdout
     setvbuf(stdout, NULL, _IONBF, 1024); //disable buffer to print to screen instantly
     
-    // for(int i = 0; i < 96; i++) //CHECK STATES IN BUFFER
+    // for(int i = 0; i < 108; i++) //CHECK STATES IN BUFFER
     // {
     //     cout  << "[" << i << " " << buffer[i] << "]";
     // }
+
     if(buffer[6] =='A' && buffer[14] =='B' && buffer[22] =='C')
     {
-        cout << "  states \tpassed" << endl;
+        if(mode)cout << "  states \tpassed" << endl;
     }
     else
     {
         check = false;
-        cout << "  states \tfailed" << endl;
+        if(mode)cout << "  states \tfailed" << endl;
     }
     if(buffer[29] =='a' && buffer[36] =='b' && buffer[43] =='c')
     {
-        cout << "  alphabet \tpassed" << endl;
+        if(mode)cout << "  alphabet \tpassed" << endl;
     }
     else
     {
         check = false;
-        cout << "  alphabet \tfailed" << endl;
+        if(mode)cout << "  alphabet \tfailed" << endl;
     }
     if(buffer[56] =='A' && buffer[58] =='a' && buffer[60] =='B')
     {
         if(buffer[73] =='B' && buffer[75] =='b' && buffer[77] =='C')
             if(buffer[90] =='C' && buffer[92] =='c' && buffer[94] =='A')
-                cout << "  transitions \tpassed" << endl;
+                if(mode)cout << "  transitions \tpassed" << endl;
     }
     else
     {
         check = false;
-        cout << "  transitions \tfailed" << endl;
+        if(mode)cout << "  transitions \tfailed" << endl;
     }
+
+    if(buffer[102] =='0' && buffer[104] =='1' && buffer[106] =='2')
+    {
+        if(mode)cout << "  input \tpassed" << endl;
+    }
+    else
+    {
+        check = false;
+        if(mode)cout << "  input \tfailed" << endl;
+    }
+
+    remove("NULL");
 
     /*           END DFA TESTS          */
     if(check) //print result
-        cout << "\n  OK" << endl;
+    {
+        if(mode)cout << "\n  OK" << endl;
+    }
     else
-        cout << "\n  BAD" << endl;
+    {
+        if(mode)cout << "\n  BAD" << endl;
+    }
+
+    return check;
 }
 
 #endif
