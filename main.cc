@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    bool printing = false; //PRINT TESTS FLAG
+    bool printing = true; //PRINT TESTS FLAG
     
     if(printing)
     {
@@ -15,7 +15,7 @@ int main()
     }
     else
     {
-        if(testing(false))
+        if(testing(printing))
             cout << "OK" << endl;
         else
             cout << "BAD" << endl;

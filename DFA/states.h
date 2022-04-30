@@ -4,29 +4,54 @@
 #include <map>
 
 #define DEFAULT 0       //DEFAULT 0
-
+enum SType {START = 0, FINAL, NONFINAL};
 template <class T> class States             //STATES CLASS
 {
     private:
         int ssize;      //NUMBER OF STATES  (SSIZE)
         std::map<T,int> smap;       //STATES MAP (SMAP)
+        T Qs;
+        std::map<T,int> Qf;
 
     public:
     States()    //STATES CONSTRUCTOR
     {
         ssize = DEFAULT;      //STATES SIZE DEFAULT (0)  
     }
-    bool add(T _state)      //ADD STATE TO SMAP
+    bool add(T _state, SType _type)      //ADD STATE TO SMAP
     {
-        if(smap.count(_state))      //CHECK SMAP FOR STATE
+        if(_type == START)
         {
-            return false;       //IF FOUND RETURN FALSE
+            if(!smap.count(_state))      //CHECK SMAP FOR STATE
+            {
+                Qs = _state;
+                ssize++;        //ADD 1 TO SSIZE
+                smap.insert(std::pair<T,int>(_state, ssize));
+                return true;
+            }
+            return false;
         }
-        else        //IF NOT FOUND RETURN TRUE
+        else if(_type == FINAL)
         {
-            ssize++;        //ADD 1 TO SSIZE
-            smap.insert(std::pair<T,int>(_state, ssize));       //INSERT STATE TO SMAP
-            return true;    
+            if(!smap.count(_state) && !Qf.count(_state))      //CHECK SMAP FOR STATE
+            {
+                ssize++;        //ADD 1 TO SSIZE
+                smap.insert(std::pair<T,int>(_state, ssize));
+                Qf.insert(std::pair<T,int>(_state, ssize));
+            }
+        }
+        else
+        {
+            if(smap.count(_state))      //CHECK SMAP FOR STATE
+            {
+                return false;       //IF FOUND RETURN FALSE
+            }
+            else        //IF NOT FOUND RETURN TRUE
+            {
+                ssize++;        //ADD 1 TO SSIZE
+                smap.insert(std::pair<T,int>(_state, ssize));       //INSERT STATE TO SMAP
+                return true;    
+            }
         }
     }
     bool del(T _state)      //DELETE STATE FROM SMAP
@@ -79,13 +104,24 @@ template <class T> class States             //STATES CLASS
             std::cout << "STATE " << it->first << "\n";
         }
     }
-    bool clear()
+    bool clear(int type)
     {
-        smap.clear();
-        if(smap.empty())
-            return true;
+        if(type == 0)
+        {
+            smap.clear();
+            if(smap.empty())
+                return true;
+            else
+                return false;
+        }
         else
-            return false;
+        {
+            Qf.clear();
+            if(Qf.empty())
+                return true;
+            else
+                return false;
+        }
     }
 };
 

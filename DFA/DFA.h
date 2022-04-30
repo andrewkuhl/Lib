@@ -40,12 +40,25 @@ template <class T> class DFA               //DFA CLASS
         delete transitions;         //DELETE TRANSITIONS
         delete input;      //DELETE INPUT
     }
-    void sset(int len, T slist[])
+    void ssets(T qs)
     {
-        states->clear();
+        
+        states->add(qs, START);
+    }
+    void ssetf(int len, T qf[])
+    {
+        states->clear(1);
         for(int i = 0; i < len; i++)
         {
-            states->add(slist[i]);
+            states->add(qf[i], FINAL);
+        }
+    }
+    void ssetnf(int len, T slist[])
+    {
+        states->clear(0);
+        for(int i = 0; i < len; i++)
+        {
+            states->add(slist[i], NONFINAL);
         }
     }
     void aset(int len, T alist[])
@@ -74,10 +87,16 @@ template <class T> class DFA               //DFA CLASS
     }
     bool run()
     {
-        if(running == false)
+        if(!running)
+        {
             return true;
+        }
         else
             return false;
+    }
+    bool isrunning()
+    {
+        return running;
     }
 };
 

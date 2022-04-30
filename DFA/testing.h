@@ -19,9 +19,9 @@ bool testing(bool mode)
     /*      STATE TESTS       */
 
     if(mode)cout << "STATE METHODS:\n";
-    if(dfa.states->add('a')) /*      ADD       */
+    if(dfa.states->add('a', NONFINAL)) /*      ADD       */
     {
-        if(!dfa.states->add('a'))
+        if(!dfa.states->add('a', NONFINAL))
             if(mode)cout << "  add() \tpassed" << endl;
     }
     else
@@ -67,7 +67,7 @@ bool testing(bool mode)
         check = false;
         if(mode)cout << "  del() \tfailed" << endl;
     }
-    if(dfa.states->clear()) /*      CLEAR       */
+    if(dfa.states->clear(0)) /*      CLEAR       */
     {
         if(mode)cout << "  clear() \tpassed"  << endl;
     }
@@ -252,7 +252,9 @@ bool testing(bool mode)
     /*          DFA TESTS           */
 
     if(mode)cout << "DFA METHODS:\n";
+    char qs = 'A';
     char sarr[] = {'A', 'B', 'C'};
+    char qfarr[] = {'B', 'C'};
 
     char aarr[] = {'a', 'b', 'c'};
 
@@ -261,8 +263,12 @@ bool testing(bool mode)
                      'C' , 'c', 'A'};
 
     char iarr[] = {'0', '1', '2'};
-    dfa.sset(3, sarr);
-    if(mode)cout << "  sset() \tpassed" << endl;
+    dfa.ssets(qs);
+    if(mode)cout << "  ssets() \tpassed" << endl;
+    dfa.ssetf(2, qfarr);
+    if(mode)cout << "  ssetf() \tpassed" << endl;
+    dfa.ssetnf(3, sarr);
+    if(mode)cout << "  ssetnf() \tpassed" << endl;
     dfa.aset(3, aarr);
     if(mode)cout << "  aset() \tpassed" << endl;
     dfa.tset(3, tarr);
