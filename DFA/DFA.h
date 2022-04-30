@@ -42,7 +42,7 @@ template <class T> class DFA               //DFA CLASS
     }
     void ssets(T qs)
     {
-        
+
         states->add(qs, START);
     }
     void ssetf(int len, T qf[])
@@ -89,6 +89,25 @@ template <class T> class DFA               //DFA CLASS
     {
         if(!running)
         {
+            running = true;
+            T currstate = states->start();
+            while(running || !states->final(currstate))
+            {
+                T nextinput = *input->get();
+                if(!nextinput)
+                {
+                    running = false;
+                    return false;
+                }
+
+                if(!transitions->find(currstate, nextinput))
+                {
+                    running = false;
+                    return false;
+                }    
+
+                currstate = transitions->getend(currstate, nextinput);
+            }
             return true;
         }
         else

@@ -14,12 +14,10 @@ template <class T> struct Transition
 };
 template <class T> class Transitions        //TRANSITIONS CLASS
 {
-    private:
-    int tsize;
-
-    std::map<Transition<T>,int> tmap;
-
     public:
+    int tsize;
+    T trash;
+    std::map<Transition<T>,int> tmap;
 
     Transitions()
     {
@@ -37,6 +35,19 @@ template <class T> class Transitions        //TRANSITIONS CLASS
             }
         }
         return false;
+    }
+    T getend(T _qcurr, T _input)     //CHECK IF TMAP CONTAINS TRANSITION
+    {
+        typename std::map<Transition<T>, int>::iterator it;
+
+        for (it = tmap.begin(); it != tmap.end(); it++)     //ITERATE MAP
+        {
+            if(it->first.qcurr == _qcurr && it->first.input == _input)
+            {
+                return it->first.qend;
+            }
+        }
+        return trash;
     }
     bool add(T _qcurr, T _input, T _qend)
     {

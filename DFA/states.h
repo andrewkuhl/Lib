@@ -29,7 +29,6 @@ template <class T> class States             //STATES CLASS
                 smap.insert(std::pair<T,int>(_state, ssize));
                 return true;
             }
-            return false;
         }
         else if(_type == FINAL)
         {
@@ -38,21 +37,19 @@ template <class T> class States             //STATES CLASS
                 ssize++;        //ADD 1 TO SSIZE
                 smap.insert(std::pair<T,int>(_state, ssize));
                 Qf.insert(std::pair<T,int>(_state, ssize));
+                return true;
             }
         }
         else
         {
-            if(smap.count(_state))      //CHECK SMAP FOR STATE
-            {
-                return false;       //IF FOUND RETURN FALSE
-            }
-            else        //IF NOT FOUND RETURN TRUE
+            if(!smap.count(_state))      //CHECK SMAP FOR STATE
             {
                 ssize++;        //ADD 1 TO SSIZE
                 smap.insert(std::pair<T,int>(_state, ssize));       //INSERT STATE TO SMAP
                 return true;    
             }
         }
+        return false;
     }
     bool del(T _state)      //DELETE STATE FROM SMAP
     {
@@ -122,6 +119,17 @@ template <class T> class States             //STATES CLASS
             else
                 return false;
         }
+    }
+    T start()
+    {
+        return Qs;
+    }
+    bool final(T _state)
+    {
+        if(Qf.count(_state))
+            return true;
+        else
+            return false;
     }
 };
 
