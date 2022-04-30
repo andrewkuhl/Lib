@@ -71,11 +71,11 @@ template <class T> class Alphabet             //ALPHABET CLASS
     }
         void print()
     {
-        typename std::map<Transition<T>, int>::iterator it;
+        typename std::map<T, int>::iterator it;
 
-        for (it = tmap.begin(); it != tmap.end(); it++)     //ITERATE MAP
+        for (it = amap.begin(); it != amap.end(); it++)     //ITERATE MAP
         {
-            std::cout << "STATE " << it->first << std::endl;
+            std::cout << "CHAR " << it->first << std::endl;
         }
     }
 };

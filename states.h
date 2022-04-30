@@ -72,9 +72,9 @@ template <class T> class States             //STATES CLASS
     }
     void print()
     {
-        typename std::map<Transition<T>, int>::iterator it;
+        typename std::map<T, int>::iterator it;
 
-        for (it = tmap.begin(); it != tmap.end(); it++)     //ITERATE MAP
+        for (it = smap.begin(); it != smap.end(); it++)     //ITERATE MAP
         {
             std::cout << "STATE " << it->first << std::endl;
         }
