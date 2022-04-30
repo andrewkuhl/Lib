@@ -10,8 +10,11 @@ int main()
     cout << "TESTING..\n";
     DFA<char> dfa;
     cout << "  dfa obj \tpassed\n";
+
+    /*      STATE TESTS       */
+
     cout << "STATE METHODS:\n";
-    if(dfa.states->add('a'))
+    if(dfa.states->add('a')) /*      ADD       */
     {
         cout << "  add() \tpassed" << endl;
     }
@@ -19,7 +22,8 @@ int main()
     {
         cout << "  add() \tfailed" << endl;
     }
-    if(dfa.states->find('a'))
+
+    if(dfa.states->find('a')) /*       FIND      */
     {
         cout << "  find() \tpassed" << endl;
     }
@@ -27,7 +31,7 @@ int main()
     {
         cout << "  find() \tfailed" << endl;
     }
-    if(dfa.states->list()[0] == 'a')
+    if(dfa.states->list()[0] == 'a') /*       LIST      */
     {
         cout << "  list() \tpassed"  << endl;
     }
@@ -35,7 +39,7 @@ int main()
     {
         cout << "  list() \tfailed" << endl;
     }
-    if(dfa.states->size() == 1)
+    if(dfa.states->size() == 1) /*     SIZE        */
     {
         cout << "  size() \tpassed"  << endl;
     }
@@ -43,7 +47,7 @@ int main()
     {
         cout << "  size() \tfailed" << endl;
     }
-    if(dfa.states->del('a'))
+    if(dfa.states->del('a')) /*      DEL       */
     {
         cout << "  del() \tpassed"  << endl;
     }
@@ -52,8 +56,12 @@ int main()
         cout << "  del() \tfailed" << endl;
     }
 
-    cout << "ALPHABET METHODS:\n";
-    if(dfa.alphabet->add('a'))
+    /*       END STATE TESTS      */
+
+
+    /*      ALPHABET TESTS       */
+    cout << "ALPHABET METHODS:\n"; 
+    if(dfa.alphabet->add('a')) /*      ADD       */
     {
         cout << "  add() \tpassed" << endl;
     }
@@ -61,7 +69,7 @@ int main()
     {
         cout << "  add() \tfailed" << endl;
     }
-    if(dfa.alphabet->find('a'))
+    if(dfa.alphabet->find('a')) /*      FIND       */
     {
         cout << "  find() \tpassed" << endl;
     }
@@ -69,7 +77,7 @@ int main()
     {
         cout << "  find() \tfailed" << endl;
     }
-    if(dfa.alphabet->list()[0] == 'a')
+    if(dfa.alphabet->list()[0] == 'a') /*      LIST       */
     {
         cout << "  list() \tpassed"  << endl;
     }
@@ -77,7 +85,7 @@ int main()
     {
         cout << "  list() \tfailed" << endl;
     }
-    if(dfa.alphabet->size() == 1)
+    if(dfa.alphabet->size() == 1) /*      SIZE       */
     {
         cout << "  size() \tpassed"  << endl;
     }
@@ -85,7 +93,7 @@ int main()
     {
         cout << "  size() \tfailed" << endl;
     }
-    if(dfa.alphabet->del('a'))
+    if(dfa.alphabet->del('a')) /*      DEL       */
     {
         cout << "  del() \tpassed"  << endl;
     }
@@ -94,10 +102,14 @@ int main()
         cout << "  del() \tfailed" << endl;
     }
 
+    /*      END ALPHABET TESTS       */
 
+
+
+    /*      TRANSITION TESTS       */
 
      cout << "TRANSITION METHODS:\n";
-    if(dfa.transitions->add('a', 'b', 'c'))
+    if(dfa.transitions->add('a', 'b', 'c')) /*      ADD       */
     {
         cout << "  add() \tpassed" << endl;
     }
@@ -105,7 +117,7 @@ int main()
     {
         cout << "  add() \tfailed" << endl;
     }
-    if(dfa.transitions->find('a', 'b'))
+    if(dfa.transitions->find('a', 'b')) /*      FIND       */
     {
         cout << "  find() \tpassed" << endl;
     }
@@ -113,7 +125,7 @@ int main()
     {
         cout << "  find() \tfailed" << endl;
     }
-    if(dfa.transitions->size() == 1)
+    if(dfa.transitions->size() == 1) /*      SIZE       */
     {
         cout << "  size() \tpassed"  << endl;
     }
@@ -121,7 +133,7 @@ int main()
     {
         cout << "  size() \tfailed" << endl;
     }
-    if(dfa.transitions->del('a', 'b'))
+    if(dfa.transitions->del('a', 'b')) /*       DEL      */
     {
         cout << "  del() \tpassed"  << endl;
     }

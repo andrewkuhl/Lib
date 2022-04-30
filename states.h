@@ -70,6 +70,15 @@ template <class T> class States             //STATES CLASS
     {
         return ssize;
     }
+    void print()
+    {
+        typename std::map<Transition<T>, int>::iterator it;
+
+        for (it = tmap.begin(); it != tmap.end(); it++)     //ITERATE MAP
+        {
+            std::cout << "STATE " << it->first << std::endl;
+        }
+    }
 };
 
 #endif
