@@ -13,3 +13,4 @@
 
 *.o
 *.out
+.DS_Store
