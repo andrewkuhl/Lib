@@ -76,8 +76,16 @@ template <class T> class States             //STATES CLASS
 
         for (it = smap.begin(); it != smap.end(); it++)     //ITERATE MAP
         {
-            std::cout << "STATE " << it->first << std::endl;
+            std::cout << "STATE " << it->first << "\n";
         }
+    }
+    bool clear()
+    {
+        smap.clear();
+        if(smap.empty())
+            return true;
+        else
+            return false;
     }
 };
 

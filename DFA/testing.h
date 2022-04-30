@@ -1,11 +1,15 @@
+#ifndef __TESTING_H__
+#define __TESTING_H__
+
 #include <cstdlib>
 #include <iostream>
 
-#include "lib.h"
+#include "DFA.h"
+#include <unistd.h>
 
 using namespace std;
 
-int main()
+void testing()
 {
     bool check = true;
     cout << "TESTING..\n";
@@ -63,13 +67,15 @@ int main()
         check = false;
         cout << "  del() \tfailed" << endl;
     }
-
-    cout << "adding states A, B, and C" << endl;
-    dfa.states->add('A');
-    dfa.states->add('B');
-    dfa.states->add('C');
-    cout << "TESTING PRINT" << endl;
-    dfa.states->print();
+    if(dfa.states->clear()) /*      DEL       */
+    {
+        cout << "  clear() \tpassed"  << endl;
+    }
+    else
+    {
+        check = false;
+        cout << "  clear() \tfailed" << endl;
+    }
 
     /*       END STATE TESTS      */
 
@@ -123,13 +129,15 @@ int main()
         check = false;
         cout << "  del() \tfailed" << endl;
     }
-
-    cout << "adding characters a, b, and c" << endl;
-    dfa.alphabet->add('a');
-    dfa.alphabet->add('b');
-    dfa.alphabet->add('c');
-    cout << "TESTING PRINT" << endl;
-    dfa.alphabet->print();
+    if(dfa.alphabet->clear()) /*      DEL       */
+    {
+        cout << "  clear() \tpassed"  << endl;
+    }
+    else
+    {
+        check = false;
+        cout << "  clear() \tfailed" << endl;
+    }
 
     /*      END ALPHABET TESTS       */
 
@@ -177,18 +185,98 @@ int main()
         check = false;
         cout << "  del() \tfailed" << endl;
     }
-    cout << "adding transitions .." << endl;
-    dfa.transitions->add('A' , 'a', 'B');
-    dfa.transitions->add('B' , 'b', 'C');
-    dfa.transitions->add('C' , 'c', 'A');
-    cout << "TESTING PRINT" << endl;
-    dfa.transitions->print();
+    if(dfa.transitions->clear()) /*      DEL       */
+    {
+        cout << "  clear() \tpassed"  << endl;
+    }
+    else
+    {
+        check = false;
+        cout << "  clear() \tfailed" << endl;
+    }
 
     /*         END TRANSITION TESTS      */
 
-    if(check) //print result
-        cout << "OK" << endl;
+    /*          DFA TESTS           */
+
+    cout << "DFA METHODS:\n";
+    char sarr[] = {'A', 'B', 'C'};
+
+    char aarr[] = {'a', 'b', 'c'};
+
+    char tarr[3][3]={'A' , 'a', 'B',
+                     'B' , 'b', 'C',
+                     'C' , 'c', 'A'};
+
+    dfa.sset(3, sarr);
+    cout << "  sset() \tpassed" << endl;
+    dfa.aset(3, aarr);
+    cout << "  aset() \tpassed" << endl;
+    dfa.tset(3, tarr);
+    cout << "  tset() \tpassed" << endl;
+    if(dfa.run())
+        cout << "  run() \tpassed" << endl;
     else
-        cout << "BAD" << endl;
-    return 0;
+    {
+        check = false;
+        cout << "  run() \tfailed" << endl;
+    }
+
+    cout << "TESTING PRINT" << endl;
+
+    char buffer[96];
+    int stdout_save;
+    stdout_save = dup(STDOUT_FILENO);
+    freopen("NUL", "a", stdout); //redirect stdout to null pointer
+    setvbuf(stdout, buffer, _IOFBF, 1024); //set buffer to stdout
+
+    dfa.states->print();
+    dfa.alphabet->print();
+    dfa.transitions->print();
+
+    freopen("NUL", "a", stdout); //redirect stdout to null again
+    dup2(stdout_save, STDOUT_FILENO); //restore the previous state of stdout
+    setvbuf(stdout, NULL, _IONBF, 1024); //disable buffer to print to screen instantly
+    
+    // for(int i = 0; i < 96; i++) //CHECK STATES IN BUFFER
+    // {
+    //     cout  << "[" << i << " " << buffer[i] << "]";
+    // }
+    if(buffer[6] =='A' && buffer[14] =='B' && buffer[22] =='C')
+    {
+        cout << "  states \tpassed" << endl;
+    }
+    else
+    {
+        check = false;
+        cout << "  states \tfailed" << endl;
+    }
+    if(buffer[29] =='a' && buffer[36] =='b' && buffer[43] =='c')
+    {
+        cout << "  alphabet \tpassed" << endl;
+    }
+    else
+    {
+        check = false;
+        cout << "  alphabet \tfailed" << endl;
+    }
+    if(buffer[56] =='A' && buffer[58] =='a' && buffer[60] =='B')
+    {
+        if(buffer[73] =='B' && buffer[75] =='b' && buffer[77] =='C')
+            if(buffer[90] =='C' && buffer[92] =='c' && buffer[94] =='A')
+                cout << "  transitions \tpassed" << endl;
+    }
+    else
+    {
+        check = false;
+        cout << "  transitions \tfailed" << endl;
+    }
+
+    /*           END DFA TESTS          */
+    if(check) //print result
+        cout << "\n  OK" << endl;
+    else
+        cout << "\n  BAD" << endl;
 }
+
+#endif

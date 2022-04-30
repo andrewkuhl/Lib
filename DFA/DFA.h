@@ -15,7 +15,9 @@
 #define DEFAULT 0       //DEFAULT 0
 template <class T> class DFA               //DFA CLASS
 {
-    private:
+
+    bool running;
+
     public:
     States<T> * states;       //STATES OBJ
     Alphabet<T> * alphabet;      //ALPHABET OBJ
@@ -23,6 +25,7 @@ template <class T> class DFA               //DFA CLASS
 
     DFA()       
     {
+        running = false;
         states = new States<T>();        //INIT STATES
         alphabet = new Alphabet<T>();       //INIT ALPHABET
         transitions = new Transitions<T>();      //INIT TRANSITIONS
@@ -32,6 +35,37 @@ template <class T> class DFA               //DFA CLASS
         delete states;      //DELETE STATES
         delete alphabet;        //DELETE ALPHABET
         delete transitions;         //DELETE TRANSITIONS
+    }
+    void sset(int len, T slist[])
+    {
+        states->clear();
+        for(int i = 0; i < len; i++)
+        {
+            states->add(slist[i]);
+        }
+    }
+    void aset(int len, T alist[])
+    {
+        alphabet->clear();
+        for(int i = 0; i < len; i++)
+        {
+            alphabet->add(alist[i]);
+        }
+    }
+    void tset(int len, T tlist[][3])
+    {
+        transitions->clear();
+        for(int i = 0; i < len; i++)
+        {
+            transitions->add(tlist[i][0], tlist[i][1], tlist[i][2]);
+        }
+    }
+    bool run()
+    {
+        if(running == false)
+            return true;
+        else
+            return false;
     }
 };
 

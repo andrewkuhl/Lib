@@ -84,8 +84,16 @@ template <class T> class Transitions        //TRANSITIONS CLASS
         for (it = tmap.begin(); it != tmap.end(); it++)     //ITERATE MAP
         {
             std::cout << "TRANSITION " << it->first.qcurr << " "
-                << it->first.input << " " << it->first.qend << " " << std::endl;
+                << it->first.input << " " << it->first.qend << "\n";
         }
+    }
+    bool clear()
+    {
+        tmap.clear();
+        if(tmap.empty())
+            return true;
+        else
+            return false;
     }
 };
 

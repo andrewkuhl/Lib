@@ -69,14 +69,22 @@ template <class T> class Alphabet             //ALPHABET CLASS
     {
         return asize;
     }
-        void print()
+    void print()
     {
         typename std::map<T, int>::iterator it;
 
         for (it = amap.begin(); it != amap.end(); it++)     //ITERATE MAP
         {
-            std::cout << "CHAR " << it->first << std::endl;
+            std::cout << "CHAR " << it->first << "\n";
         }
+    }
+    bool clear()
+    {
+        amap.clear();
+        if(amap.empty())
+            return true;
+        else
+            return false;
     }
 };
 

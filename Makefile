@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -Wall
 LDFLAGS =
-OBJFILES = testing.o
+OBJFILES = main.o
 TARGET = a.out
 
 all: $(TARGET)
