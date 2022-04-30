@@ -11,6 +11,7 @@
 #include "states.h"
 #include "alph.h"
 #include "trans.h"
+#include "input.h"
 
 #define DEFAULT 0       //DEFAULT 0
 template <class T> class DFA               //DFA CLASS
@@ -22,6 +23,7 @@ template <class T> class DFA               //DFA CLASS
     States<T> * states;       //STATES OBJ
     Alphabet<T> * alphabet;      //ALPHABET OBJ
     Transitions<T> * transitions;     //TRANSITIONS OBJ
+    Input<T> * input;     //INPUT  OBJ
 
     DFA()       
     {
@@ -29,12 +31,14 @@ template <class T> class DFA               //DFA CLASS
         states = new States<T>();        //INIT STATES
         alphabet = new Alphabet<T>();       //INIT ALPHABET
         transitions = new Transitions<T>();      //INIT TRANSITIONS
+        input = new Input<T>();      //INIT INPUT
     }
     ~DFA()
     {
         delete states;      //DELETE STATES
         delete alphabet;        //DELETE ALPHABET
         delete transitions;         //DELETE TRANSITIONS
+        delete input;      //DELETE INPUT
     }
     void sset(int len, T slist[])
     {
@@ -58,6 +62,14 @@ template <class T> class DFA               //DFA CLASS
         for(int i = 0; i < len; i++)
         {
             transitions->add(tlist[i][0], tlist[i][1], tlist[i][2]);
+        }
+    }
+    void iset(int len, T ilist[])
+    {
+        input->clear();
+        for(int i = 0; i < len; i++)
+        {
+            input->add(ilist[i]);
         }
     }
     bool run()
